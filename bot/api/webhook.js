@@ -53,9 +53,9 @@ export default async function handler(req, res) {
     return res.status(400).end();
   }
 
-  res.status(200).end();
-
   const events = body.events ?? [];
+  console.log('webhook events:', JSON.stringify(events));
+
   const lineClient = new Client({
     channelSecret: LINE_CHANNEL_SECRET,
     channelAccessToken: LINE_CHANNEL_ACCESS_TOKEN,
@@ -81,4 +81,6 @@ export default async function handler(req, res) {
       }
     }
   }
+
+  res.status(200).end();
 }
