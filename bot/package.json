@@ -1,0 +1,17 @@
+{
+  "name": "line-openai-bot",
+  "version": "1.0.0",
+  "description": "LINE bot that responds via OpenAI API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^9.0.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "openai": "^4.73.0"
+  }
+}
