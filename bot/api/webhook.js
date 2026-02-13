@@ -62,12 +62,15 @@ export default async function handler(req, res) {
   });
   const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 
+  const BOT_MENTION = '@Local Night AI';
   for (const event of events) {
     if (event.type !== 'message' || event.message?.type !== 'text') continue;
     const userText = event.message.text;
+    if (!userText.startsWith(BOT_MENTION)) continue;
     const replyToken = event.replyToken;
+    const prompt = userText.slice(BOT_MENTION.length).trim();
     try {
-      const reply = await callOpenAI(openai, userText);
+      const reply = await callOpenAI(openai, prompt);
       await lineClient.replyMessage(replyToken, { type: 'text', text: reply });
     } catch (err) {
       console.error('OpenAI or reply error:', err);

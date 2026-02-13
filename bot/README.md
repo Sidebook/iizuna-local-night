@@ -17,27 +17,20 @@ LINE のメッセージを OpenAI API に送り、返答をそのまま返すボ
    - `LINE_CHANNEL_SECRET` … **基本設定**タブの「Channel secret」
    - `LINE_CHANNEL_ACCESS_TOKEN` … **Messaging API設定**タブの「チャネルアクセストークン（長期）」で［発行］を押して表示されるトークン
    - `OPENAI_API_KEY` … OpenAI の API キー
-   - `PORT` … サーバー番号（省略時は 3000）
-
    **Access Token の場所:** [LINE Developers コンソール](https://developers.line.biz/console/) → チャネルを選択 → **「Messaging API設定」タブ**を開く → 「チャネルアクセストークン（長期）」の［発行］で取得（Channel ID / Channel Secret がある「基本設定」とは別タブです）。
 
-## 起動
+## 起動（ローカル）
 
 ```bash
-npm start
+cd bot && npm install && npm start
 ```
 
-開発時は `npm run dev` でファイル変更時に再起動されます。
+`vercel dev` が動き、`/webhook` がローカルで試せます。LINE の Webhook 確認には ngrok などで HTTPS トンネルを張ってください。
 
 ## Webhook
 
 - LINE の Webhook URL を `https://<あなたのドメイン>/webhook` に設定する
-- ローカル確認には ngrok などで HTTPS のトンネルを張る
-
-## エンドポイント
-
-- `GET /health` … 死活確認（ローカル用）
-- `POST /webhook` … LINE からの Webhook（署名検証あり）
+- 本番・ローカルとも **api/webhook.js** の `POST /webhook` が使われる
 
 ## Vercel にデプロイする
 
