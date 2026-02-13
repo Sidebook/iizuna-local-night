@@ -14,10 +14,12 @@ LINE のメッセージを OpenAI API に送り、返答をそのまま返すボ
 
 4. 環境変数を設定（`.env` を作るか、`.env.example` をコピーして編集）
 
-   - `LINE_CHANNEL_SECRET` … LINE チャネルのシークレット
-   - `LINE_CHANNEL_ACCESS_TOKEN` … LINE チャネルのアクセストークン
+   - `LINE_CHANNEL_SECRET` … **基本設定**タブの「Channel secret」
+   - `LINE_CHANNEL_ACCESS_TOKEN` … **Messaging API設定**タブの「チャネルアクセストークン（長期）」で［発行］を押して表示されるトークン
    - `OPENAI_API_KEY` … OpenAI の API キー
    - `PORT` … サーバー番号（省略時は 3000）
+
+   **Access Token の場所:** [LINE Developers コンソール](https://developers.line.biz/console/) → チャネルを選択 → **「Messaging API設定」タブ**を開く → 「チャネルアクセストークン（長期）」の［発行］で取得（Channel ID / Channel Secret がある「基本設定」とは別タブです）。
 
 ## 起動
 
