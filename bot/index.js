@@ -32,6 +32,7 @@ app.get('/health', (req, res) => {
 app.post('/webhook', middleware(lineConfig), async (req, res) => {
   res.sendStatus(200);
   const events = req.body?.events ?? [];
+  console.log('webhook events:', JSON.stringify(events));
   for (const event of events) {
     if (event.type !== 'message' || event.message?.type !== 'text') continue;
     const userText = event.message.text;
