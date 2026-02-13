@@ -1,5 +1,9 @@
 {
-  "rewrites": [
-    { "source": "/webhook", "destination": "/api/webhook" }
+  "framework": "express",
+  "builds": [
+    { "src": "index.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.js" }
   ]
 }

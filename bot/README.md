@@ -25,12 +25,12 @@ LINE のメッセージを OpenAI API に送り、返答をそのまま返すボ
 cd bot && npm install && npm start
 ```
 
-`vercel dev` が動き、`/webhook` がローカルで試せます。LINE の Webhook 確認には ngrok などで HTTPS トンネルを張ってください。
+Express サーバー（`index.js`）が起動し、`GET /health` と `POST /webhook` が使えます。LINE の Webhook 確認には ngrok などで HTTPS トンネルを張ってください。
 
 ## Webhook
 
 - LINE の Webhook URL を `https://<あなたのドメイン>/webhook` に設定する
-- 本番・ローカルとも **api/webhook.js** の `POST /webhook` が使われる
+- 本番（Vercel）・ローカルとも **Express**（`index.js`）の `POST /webhook` が使われる
 
 ## Vercel にデプロイする
 
@@ -43,4 +43,4 @@ cd bot && npm install && npm start
    `https://<あなたのVercelドメイン>/webhook`  
    に設定する
 
-**ルートがリポジトリ直下のとき**は、Vercel の「Root Directory」に `bot` を指定すると、`api/` と `vercel.json` が正しく使われます。
+**ルートがリポジトリ直下のとき**は、Vercel の「Root Directory」に `bot` を指定し、Framework を **Express** にしておくと `index.js` がエントリとしてビルドされます。
