@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>リダイレクト中...</title>
+</head>
+<body>
+  <p id="msg">リダイレクトしています...</p>
+  <p id="fallback" style="display:none;">リダイレクトできませんでした。<a id="fallback-link" href="#">こちらをクリック</a>してください。</p>
+  <script>
+    (function() {
+      fetch('donation_link.txt')
+        .then(function(r) { return r.text(); })
+        .then(function(text) {
+          var url = (text || '').trim();
+          if (url && url.indexOf('http') === 0) {
+            document.getElementById('fallback-link').href = url;
+            location.replace(url);
+            return;
+          }
+          throw new Error('URL not set');
+        })
+        .catch(function() {
+          document.getElementById('msg').style.display = 'none';
+          document.getElementById('fallback').style.display = 'block';
+        });
+    })();
+  </script>
+</body>
+</html>
